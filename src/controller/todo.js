@@ -9,17 +9,21 @@ const todoController = {
     const todo = todoModal.find();
     return res.json(todo);
   },
-  create: async (req, res) => {
+  createOne: async (req, res) => {
     const title = req.body.title;
     const description = req.body.description;
     const completed = req.body.completed;
-    const todo = await todoModal.create({ title,description,completed });
+    const todo = await todoModal.createOne({ title,description,completed });
 
     return res.json({ message: "Todo created", todo });
   },
-  update: (req, res) => {
-    console.log(req.body);
-    return res.json({ message: "This is post request" });
+  updateOne: async (req, res) => {
+    
+    const title = req.body.title;
+    const description = req.body.description;
+    const completed = req.body.completed;
+    const todo = await todoModal.updateOne({ title,description,completed });
+    return res.json({ message: "Todo updated", todo });
   },
   delete: (req, res) => {
     console.log(req.body);
