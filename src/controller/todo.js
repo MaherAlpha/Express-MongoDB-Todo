@@ -26,6 +26,17 @@ const todoController = {
       const todo = await todoModal.updateOne({ title,description,completed });
     return res.json({ message: "Todo updated", todo })
   },
+  updateStatus: async(req, res)=>{
+    //const {id} =todoModal.findById(req.params)// param return json object
+    const id=req.params.id
+    if(id){
+      const completed = req.body.completed;
+      const todo = await todoModal.updateOne({ completed });
+      return res.status(200).json({ message: "Status updated", todo })
+    }else{
+      return res.status(403).json({message: "Bad request: ID not found!"})
+    }
+  },
   delete: async (req, res) => {
 
     const todoId = todoModal.find(req.body.id)
